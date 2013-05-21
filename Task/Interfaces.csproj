@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DD20C8E0-2BD0-42A1-89F4-7D723E207134}</ProjectGuid>
+    <ProjectGuid>{08CE9BAC-D3EC-4702-B3EA-7C320EA1D939}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TasksImplementation</RootNamespace>
-    <AssemblyName>TasksImplementation</AssemblyName>
+    <RootNamespace>Interfaces</RootNamespace>
+    <AssemblyName>Task</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddIntegers.cs" />
+    <Compile Include="GeneralTaskEventArgs.cs" />
+    <Compile Include="IResult.cs" />
+    <Compile Include="ITask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Task\Task.csproj">
-      <Project>{08CE9BAC-D3EC-4702-B3EA-7C320EA1D939}</Project>
-      <Name>Task</Name>
-    </ProjectReference>
+    <Compile Include="ResultBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

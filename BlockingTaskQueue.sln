@@ -1,13 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockingQueueSimulator", "BlockingTaskQueue\BlockingQueueSimulator.csproj", "{E861F605-A99E-450B-B473-D808F64AF5BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task", "Task\Task.csproj", "{08CE9BAC-D3EC-4702-B3EA-7C320EA1D939}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Task\Interfaces.csproj", "{08CE9BAC-D3EC-4702-B3EA-7C320EA1D939}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockingTaskQueue", "TaskQueue\BlockingTaskQueue.csproj", "{CAEEFFE8-C7B9-4E74-B6D4-2B0858322C2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksImplementation", "TasksImplementation\TasksImplementation.csproj", "{DD20C8E0-2BD0-42A1-89F4-7D723E207134}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteTasks", "TasksImplementation\ConcreteTasks.csproj", "{DD20C8E0-2BD0-42A1-89F4-7D723E207134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -203,6 +203,7 @@
             this.tasksComboBox.Name = "tasksComboBox";
             this.tasksComboBox.Size = new System.Drawing.Size(169, 21);
             this.tasksComboBox.TabIndex = 3;
+            this.tasksComboBox.SelectedIndexChanged += new System.EventHandler(this.tasksComboBox_SelectedIndexChanged);
             // 
             // button1
             // 

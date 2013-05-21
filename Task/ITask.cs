@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Task
+namespace Interfaces
 {
-    public class IResult
-    {
-        public String Description;
-        public String Actual;
-    }
-
     public class SingleOperandInput 
     {
         public Object Operand;
@@ -24,6 +18,7 @@ namespace Task
 
     public interface ITask
     {
-        IResult Run();
+        ResultBase ResultAction { get; set; }
+        void Run();
     }
 }

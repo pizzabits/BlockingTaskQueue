@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddIntegersResult.cs" />
+    <Compile Include="ConcatenateStringsResult.cs" />
+    <Compile Include="PalindromCheckerResult.cs" />
     <Compile Include="EnqueingObject.cs" />
     <Compile Include="SimulatorForm.cs">
       <SubType>Form</SubType>
@@ -56,6 +59,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskObject.cs" />
     <EmbeddedResource Include="SimulatorForm.resx">
       <DependentUpon>SimulatorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -68,7 +72,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -84,9 +90,9 @@
       <Project>{CAEEFFE8-C7B9-4E74-B6D4-2B0858322C2F}</Project>
       <Name>BlockingTaskQueue</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Task\Task.csproj">
+    <ProjectReference Include="..\Task\Interfaces.csproj">
       <Project>{08CE9BAC-D3EC-4702-B3EA-7C320EA1D939}</Project>
-      <Name>Task</Name>
+      <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

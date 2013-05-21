@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Collections.Concurrent;
 using System.Threading;
-using Task;
+using Interfaces;
 
-namespace TaskQueue
+namespace BlockingTaskQueue
 {
     public static class TaskQueue
     {
-        private static int _totalQueued = 0;
+        private static Int32 _threadCount = 0;
         private static ConcurrentQueue<ITask> _queue = new ConcurrentQueue<ITask>();
         private static List<Thread> _dequeueThreads = new List<Thread>(100);
 
@@ -22,7 +22,6 @@ namespace TaskQueue
             }
 
             _queue.Enqueue(task);
-            Interlocked.Increment(ref _totalQueued);
         }
 
 
@@ -30,10 +29,12 @@ namespace TaskQueue
         {
             for (Int32 i = 0; i < workers; i++)
             {
-                //Timer timer = new Timer(new TimerCallback(DequeueThreadFunc), null, 0, 
                 Thread worker = new Thread(new ThreadStart(DequeueThreadFunc));
-                worker.Start();
+                 // Worker threads will not keep an application running after all foreground threads have exited.
+                worker.IsBackground = true;
+                worker.Name = Interlocked.Increment(ref _threadCount).ToString();
                 _dequeueThreads.Add(worker);
+                worker.Start();
             }
         }
 
@@ -49,9 +50,7 @@ namespace TaskQueue
                 }
                 else if (_queue.TryDequeue(out task))
                 {
-                    IResult result = task.Run();
-
-                    // now update the GUI!
+                    task.Run();
                 }
             }
         }

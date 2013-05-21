@@ -6,12 +6,12 @@ using Interfaces;
 
 namespace TasksImplementation
 {
-    public class AddIntegers : ITask
+    public class ConcatenateStrings  : ITask
     {
         public ResultBase ResultAction { get; set; }
         private TwoOperandsInput _input;
 
-        public AddIntegers(Object op1, Object op2, Object resultAction)
+        public ConcatenateStrings(Object op1, Object op2, Object resultAction)
         {
             ResultAction = resultAction as ResultBase;
             _input = new TwoOperandsInput() { Operand1 = op1, Operand2 = op2 };
@@ -19,8 +19,8 @@ namespace TasksImplementation
 
         public void Run()
         {
-            Int32 sum = Int32.Parse(_input.Operand1 as String) + Int32.Parse(_input.Operand2 as String);
-            ResultAction.NotifyResult(sum);
+            String concat = String.Format("{0}{1}", _input.Operand1 as String, _input.Operand2 as String);
+            ResultAction.NotifyResult(concat);
         }
     }
 }
