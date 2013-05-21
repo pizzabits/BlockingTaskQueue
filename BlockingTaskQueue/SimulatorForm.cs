@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections.Concurrent;
-using Interfaces;
+using Contracts;
 using System.Configuration;
 using System.Reflection;
 using System.IO;
@@ -26,33 +26,31 @@ namespace BlockingTaskQueue
         private Dictionary<Type, String> _concreteEventArgsToTaskDescription;
         
         //// TODO: extend to many assemblies in the configuration.
-        private String _tasksAssemblyName;
         private Assembly _tasksAssembly;
-        private Assembly _thisAssembly;
+        private Assembly _callbacksAssembly;
 
         public MainForm()
         {
             InitializeComponent();
 
-            // TODO: sanity checks
-            _tasksAssemblyName = ConfigurationManager.AppSettings["TasksAssembly"];
-            _tasksAssembly = Assembly.LoadFrom(_tasksAssemblyName);
-            _thisAssembly = Assembly.GetAssembly(this.GetType());
+            _tasksAssembly = Assembly.LoadFrom(ConfigurationManager.AppSettings["TasksAssembly"]);
+            _callbacksAssembly = Assembly.LoadFrom(ConfigurationManager.AppSettings["CallbacksAssembly"]);
 
-            // TODO: implement a prefix for each task name, don't use Count!
+            // TODO: implement a prefix for each task description, don't use Count!
             _taskDescriptionToObject = new Dictionary<string, TaskObject>(ConfigurationManager.AppSettings.Count);
             _concreteEventArgsToTaskDescription = new Dictionary<Type, string>(ConfigurationManager.AppSettings.Count);
 
             foreach (var key in ConfigurationManager.AppSettings.AllKeys)
             {
-                if (key != "TasksAssembly")
+                if (key != "TasksAssembly" && key != "CallbacksAssembly")
                 {
                     String[] concreteTypeNamesAndOperandsRequired = ConfigurationManager.AppSettings[key].Split(',');
                     Type taskConcreteType = _tasksAssembly.GetType(concreteTypeNamesAndOperandsRequired[0]);
-                    Type taskResultType = _thisAssembly.GetType(concreteTypeNamesAndOperandsRequired[1]);
-                    Type taskConcreteEventArgsType = _thisAssembly.GetType(concreteTypeNamesAndOperandsRequired[2]);
+                    Type taskCallbackType = _callbacksAssembly.GetType(concreteTypeNamesAndOperandsRequired[1]);
+                    Type taskConcreteEventArgsType = _callbacksAssembly.GetType(concreteTypeNamesAndOperandsRequired[2]);
 
-                    _taskDescriptionToObject.Add(key, new TaskObject(taskConcreteType, taskResultType, Int32.Parse(concreteTypeNamesAndOperandsRequired[3]), "true" == concreteTypeNamesAndOperandsRequired[4]));
+                    _taskDescriptionToObject.Add(key, new TaskObject(taskConcreteType, taskCallbackType, Int32.Parse(concreteTypeNamesAndOperandsRequired[3]),
+                        "true" == concreteTypeNamesAndOperandsRequired[4]));
                     _concreteEventArgsToTaskDescription.Add(taskConcreteEventArgsType, key);
                     tasksComboBox.Items.Add(key);
                 }

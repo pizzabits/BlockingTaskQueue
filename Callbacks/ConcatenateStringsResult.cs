@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Interfaces;
+using Contracts;
 
-namespace BlockingTaskQueue
+namespace Callbacks
 {
     public class ConcatenateStringsEventArgs : GeneralTaskEventArgs
     {

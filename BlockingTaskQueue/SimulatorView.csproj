@@ -47,9 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddIntegersResult.cs" />
-    <Compile Include="ConcatenateStringsResult.cs" />
-    <Compile Include="PalindromCheckerResult.cs" />
     <Compile Include="EnqueingObject.cs" />
     <Compile Include="SimulatorForm.cs">
       <SubType>Form</SubType>
@@ -90,9 +87,9 @@
       <Project>{CAEEFFE8-C7B9-4E74-B6D4-2B0858322C2F}</Project>
       <Name>BlockingTaskQueue</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Task\Interfaces.csproj">
+    <ProjectReference Include="..\Task\Contracts.csproj">
       <Project>{08CE9BAC-D3EC-4702-B3EA-7C320EA1D939}</Project>
-      <Name>Interfaces</Name>
+      <Name>Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
